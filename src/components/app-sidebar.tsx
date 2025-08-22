@@ -1,10 +1,6 @@
 import {
-  Calendar,
   ChevronUp,
   Home,
-  Inbox,
-  Search,
-  Settings,
   User2,
 } from "lucide-react";
 
@@ -18,10 +14,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 
 import Image from "next/image";

@@ -1,7 +1,14 @@
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
-import { MdLibraryAdd, MdLibraryAddCheck, MdOutlinePayments, MdPayments } from "react-icons/md";
+import {
+  MdLibraryAdd,
+  MdLibraryAddCheck,
+  MdOutlinePayments,
+  MdPayments,
+} from "react-icons/md";
 import "./globals.css";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { UltimosPedidos } from "@/components/ultimos-pedidos";
 
 export default function Home() {
   return (
@@ -23,8 +30,13 @@ export default function Home() {
             <h1>Painel de Aprovação</h1>
           </div>
         </nav>
+        <div className="flex mt-5">
+          <h1 className="w-[50%]">Últimos pedidos</h1>
+        </div>
         <Separator className="mt-5 mb-5 bg-primary" />
-        
+        <div>
+          <UltimosPedidos/>
+        </div>
       </div>
     </div>
   );
