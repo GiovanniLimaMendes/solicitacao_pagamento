@@ -14,7 +14,7 @@ import Image from "next/image";
 
 export default function Login() {
   return (
-    <div className="flex w-full h-[100vh] items-center justify-center">
+    <div className="flex w-full h-[95vh] items-center justify-center">
       <Card className="w-full max-w-sm">
         <Image
           src="/02 - Logo ZCBR Retangular.png"
