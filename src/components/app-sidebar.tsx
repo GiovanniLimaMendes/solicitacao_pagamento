@@ -23,14 +23,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { MdLibraryAdd, MdLibraryAddCheck, MdPayments } from "react-icons/md";
+import { MdHome, MdLibraryAdd, MdLibraryAddCheck, MdPayments } from "react-icons/md";
 
 // Menu items.
 const items = [
   {
     title: "Home",
     url: "#",
-    icon: Home,
+    icon: MdHome,
   },
   {
     title: "Solicitação de Pagamento",

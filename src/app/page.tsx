@@ -7,7 +7,6 @@ import {
   MdPayments,
 } from "react-icons/md";
 import "./globals.css";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { UltimosPedidos } from "@/components/ultimos-pedidos";
 
 export default function Home() {

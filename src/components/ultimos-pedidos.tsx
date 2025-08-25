@@ -1,3 +1,5 @@
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 
 export function UltimosPedidos() {
@@ -6,18 +8,24 @@ export function UltimosPedidos() {
       <TableCaption>Lista de pedidos de compras recentes.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">N.º Pedido de Compra</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead>Amount</TableHead>
-          <TableHead className="text-right">Status</TableHead>
+          <TableHead>N.º Pedido de Compra</TableHead>
+          <TableHead>Solicitante</TableHead>
+          <TableHead>Forma de pagamento</TableHead>
+          <TableHead>Valor</TableHead>
+          <TableHead>Vencimento</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead className="w-[50px]"></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         <TableRow>
-          <TableCell className="font-medium">INV001</TableCell>
-          <TableCell>Paid</TableCell>
-          <TableCell>Credit Card</TableCell>
-          <TableCell className="text-right">$250.00</TableCell>
+          <TableCell className="font-medium">49505</TableCell>
+          <TableCell>Giovanni Mendes</TableCell>
+          <TableCell>Boleto</TableCell>
+          <TableCell>R$699,00</TableCell>
+          <TableCell>16/08/2025</TableCell>
+          <TableCell><Badge variant="default">Pago</Badge></TableCell>
+          <TableCell className="text-right"><Button className="p-2">Editar</Button></TableCell>
         </TableRow>
       </TableBody>
     </Table>
