@@ -1,15 +1,48 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 
+interface Solicitacao {
+  id: number;
+  valor: number;
+  vencimento: string;
+  forma_pagamento: "boleto" | "pix" | "ted";
+  descricao: string;
+  fornecedor_nome: string;
+}
+
 export function UltimosPedidos() {
+  const [solicitacoes, setSolicitacoes] = useState<Solicitacao[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchSolicitacoes() {
+      try {
+        const res = await fetch("/api/solicitacoes_pagamento", { cache: "no-store" });
+        const data = await res.json();
+        setSolicitacoes(data.solicitacoes || []);
+      } catch (error) {
+        console.error("Erro ao buscar solicitações:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchSolicitacoes();
+  }, []);
+
+  if (loading) return <p>Carregando pedidos...</p>;
+
   return (
     <Table>
       <TableCaption>Lista de pedidos de compras recentes.</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>N.º Pedido de Compra</TableHead>
-          <TableHead>Solicitante</TableHead>
+          <TableHead>Fornecedor</TableHead>
           <TableHead>Forma de pagamento</TableHead>
           <TableHead>Valor</TableHead>
           <TableHead>Vencimento</TableHead>
@@ -18,15 +51,21 @@ export function UltimosPedidos() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">49505</TableCell>
-          <TableCell>Giovanni Mendes</TableCell>
-          <TableCell>Boleto</TableCell>
-          <TableCell>R$699,00</TableCell>
-          <TableCell>16/08/2025</TableCell>
-          <TableCell><Badge variant="default">Pago</Badge></TableCell>
-          <TableCell className="text-right"><Button className="p-2">Editar</Button></TableCell>
-        </TableRow>
+        {solicitacoes.map((s) => (
+          <TableRow key={s.id}>
+            <TableCell className="font-medium">{s.id}</TableCell>
+            <TableCell>{s.fornecedor_nome}</TableCell>
+            <TableCell>{s.forma_pagamento}</TableCell>
+            <TableCell>R${s.valor}</TableCell>
+            <TableCell>{new Date(s.vencimento).toLocaleDateString("pt-BR")}</TableCell>
+            <TableCell>
+              <Badge variant="default">Pago</Badge>
+            </TableCell>
+            <TableCell className="text-right">
+              <Button className="p-2">Editar</Button>
+            </TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );

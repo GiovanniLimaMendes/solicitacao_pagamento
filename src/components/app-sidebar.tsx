@@ -24,6 +24,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { MdHome, MdLibraryAdd, MdLibraryAddCheck, MdPayments } from "react-icons/md";
+import { cookies } from "next/headers";
 
 // Menu items.
 const items = [
@@ -49,7 +50,12 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
+type AppSidebarProps = {
+  userName: string;
+};
+
+export function AppSidebar({ userName }: AppSidebarProps) {
+  
   return (
     <Sidebar>
       <Image
@@ -84,7 +90,7 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton className="hover:bg-primary hover:text-white">
-                  <User2 /> Usuário
+                  <User2 /> {userName}
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
