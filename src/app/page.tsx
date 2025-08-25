@@ -22,6 +22,7 @@ export default function Home() {
             <h1>Solicitações de Pagamento</h1>
           </div>
           <NovaSolicitacao />
+
           <div className="flex p-3 border-1 rounded-2xl items-center gap-3 cursor-pointer hover:bg-primary hover:text-white">
             <MdLibraryAddCheck className="text-2xl" />
             <h1>Painel de Aprovação</h1>
