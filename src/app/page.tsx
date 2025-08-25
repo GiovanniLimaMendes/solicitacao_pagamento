@@ -8,6 +8,7 @@ import {
 } from "react-icons/md";
 import "./globals.css";
 import { UltimosPedidos } from "@/components/ultimos-pedidos";
+import NovaSolicitacao from "@/components/nova_solicitacao";
 
 export default function Home() {
   return (
@@ -20,10 +21,7 @@ export default function Home() {
             <MdPayments className="text-2xl" />
             <h1>Solicitações de Pagamento</h1>
           </div>
-          <div className="flex p-3 border-1 rounded-2xl items-center gap-3 cursor-pointer hover:bg-primary hover:text-white">
-            <MdLibraryAdd className="text-2xl" />
-            <h1>Fazer nova Solicitação</h1>
-          </div>
+          <NovaSolicitacao />
           <div className="flex p-3 border-1 rounded-2xl items-center gap-3 cursor-pointer hover:bg-primary hover:text-white">
             <MdLibraryAddCheck className="text-2xl" />
             <h1>Painel de Aprovação</h1>
@@ -34,7 +32,7 @@ export default function Home() {
         </div>
         <Separator className="mt-5 mb-5 bg-primary" />
         <div>
-          <UltimosPedidos/>
+          <UltimosPedidos />
         </div>
       </div>
     </div>

@@ -3,7 +3,15 @@
 import { useEffect, useState } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table";
 
 interface Solicitacao {
   id: number;
@@ -12,6 +20,7 @@ interface Solicitacao {
   forma_pagamento: "boleto" | "pix" | "ted";
   descricao: string;
   fornecedor_nome: string;
+  status: "pendente" | "aprovado" | "pago";
 }
 
 export function UltimosPedidos() {
@@ -21,7 +30,9 @@ export function UltimosPedidos() {
   useEffect(() => {
     async function fetchSolicitacoes() {
       try {
-        const res = await fetch("/api/solicitacoes_pagamento", { cache: "no-store" });
+        const res = await fetch("/api/solicitacoes_pagamento", {
+          cache: "no-store",
+        });
         const data = await res.json();
         setSolicitacoes(data.solicitacoes || []);
       } catch (error) {
@@ -47,7 +58,7 @@ export function UltimosPedidos() {
           <TableHead>Valor</TableHead>
           <TableHead>Vencimento</TableHead>
           <TableHead>Status</TableHead>
-          <TableHead className="w-[50px]"></TableHead>
+          <TableHead></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -56,13 +67,33 @@ export function UltimosPedidos() {
             <TableCell className="font-medium">{s.id}</TableCell>
             <TableCell>{s.fornecedor_nome}</TableCell>
             <TableCell>{s.forma_pagamento}</TableCell>
-            <TableCell>R${s.valor}</TableCell>
-            <TableCell>{new Date(s.vencimento).toLocaleDateString("pt-BR")}</TableCell>
             <TableCell>
-              <Badge variant="default">Pago</Badge>
+              {Number(s.valor).toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              })}
+            </TableCell>
+            <TableCell>
+              {new Date(s.vencimento).toLocaleDateString("pt-BR")}
+            </TableCell>
+            <TableCell>
+              <Badge
+                className="min-w-[100%]"
+                variant={
+                  s.status === "pago"
+                    ? "default"
+                    : s.status === "aprovado"
+                    ? "default"
+                    : s.status === "pendente"
+                    ? "destructive"
+                    : "outline"
+                }
+              >
+                {s.status}
+              </Badge>
             </TableCell>
             <TableCell className="text-right">
-              <Button className="p-2">Editar</Button>
+              <Button className="p-2">Visualizar</Button>
             </TableCell>
           </TableRow>
         ))}

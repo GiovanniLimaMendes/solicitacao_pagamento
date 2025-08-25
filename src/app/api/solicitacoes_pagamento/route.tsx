@@ -14,6 +14,7 @@ interface SolicitacaoPagamento extends RowDataPacket {
   fornecedor_banco: string | null;
   fornecedor_agencia: string | null;
   fornecedor_conta: string | null;
+  status: "pendente" | "aprovado" | "pago";
 }
 
 export async function GET(req: NextRequest) {
@@ -34,6 +35,7 @@ export async function GET(req: NextRequest) {
         sp.vencimento,
         sp.forma_pagamento,
         sp.descricao,
+        sp.status,
         f.nome AS fornecedor_nome,
         f.pix AS fornecedor_pix,
         f.banco AS fornecedor_banco,
