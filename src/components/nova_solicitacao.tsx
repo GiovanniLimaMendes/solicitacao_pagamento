@@ -44,8 +44,14 @@ interface Fornecedor {
   nome: string;
 }
 
+type NovaSolicitacaoProps = {
+  width?: string;          // largura do modal
+  buttonClass?: string;    // estilo do botão que abre o modal
+  icon?: string;
+};
+
 // Componente principal
-export default function NovaSolicitacao() {
+export default function NovaSolicitacao({ width = "w-full", buttonClass = "", icon = "text-2xl" }: NovaSolicitacaoProps) {
   // Estados para os campos do formulário
   const [formaPagamento, setFormaPagamento] = useState("");
   const [valor, setValor] = useState("0,00");
@@ -199,8 +205,8 @@ export default function NovaSolicitacao() {
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <div className="flex p-3 border rounded-2xl items-center gap-3 cursor-pointer hover:bg-primary hover:text-white transition-colors">
-            <MdLibraryAdd className="text-2xl" />
+          <div className={`${buttonClass}, ${width}`} >
+            <MdLibraryAdd className={`${icon}`} />
             Fazer nova Solicitação
           </div>
         </DialogTrigger>

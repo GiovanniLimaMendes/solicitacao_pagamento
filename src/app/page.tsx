@@ -1,9 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import {
-  MdLibraryAdd,
   MdLibraryAddCheck,
-  MdOutlinePayments,
   MdPayments,
 } from "react-icons/md";
 import "./globals.css";
@@ -22,12 +20,12 @@ export default function Home() {
             <MdPayments className="text-2xl" />
             <h1>Solicitações de Pagamento</h1>
           </div>
-          <NovaSolicitacao />
+          <NovaSolicitacao buttonClass="flex p-3 border rounded-2xl items-center gap-3 cursor-pointer hover:bg-primary hover:text-white transition-colors"/>
           <div className="flex p-3 border-1 rounded-2xl items-center gap-3 cursor-pointer hover:bg-primary hover:text-white">
             <MdLibraryAddCheck className="text-2xl" />
             <h1>Painel de Aprovação</h1>
           </div>
-          <CadastroFornecedor />
+          <CadastroFornecedor buttonClass="flex p-3 border rounded-2xl items-center gap-3 cursor-pointer hover:bg-primary hover:text-white transition-colors"/>
         </nav>
         <div className="flex mt-5">
           <h1 className="w-[50%]">Últimos pedidos</h1>

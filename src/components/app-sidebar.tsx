@@ -1,8 +1,4 @@
-import {
-  ChevronUp,
-  Home,
-  User2,
-} from "lucide-react";
+import { ChevronUp, Home, User2 } from "lucide-react";
 
 import { FaUserPlus } from "react-icons/fa";
 
@@ -25,8 +21,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { MdHome, MdLibraryAdd, MdLibraryAddCheck, MdPayments } from "react-icons/md";
+import {
+  MdHome,
+  MdLibraryAdd,
+  MdLibraryAddCheck,
+  MdPayments,
+} from "react-icons/md";
 import { cookies } from "next/headers";
+import NovaSolicitacao from "./nova_solicitacao";
+import CadastroFornecedor from "./cadastro_fornecedor";
 
 // Menu items.
 const items = [
@@ -41,19 +44,9 @@ const items = [
     icon: MdPayments,
   },
   {
-    title: "Fazer Nova Solicitação",
-    url: "#",
-    icon: MdLibraryAdd,
-  },
-  {
     title: "Painel de Aprovação",
     url: "#",
     icon: MdLibraryAddCheck,
-  },
-  {
-    title: "Cadastrar Fornecedor",
-    url: "#",
-    icon: FaUserPlus,
   },
 ];
 
@@ -62,7 +55,6 @@ type AppSidebarProps = {
 };
 
 export function AppSidebar({ userName }: AppSidebarProps) {
-  
   return (
     <Sidebar>
       <Image
@@ -79,7 +71,10 @@ export function AppSidebar({ userName }: AppSidebarProps) {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild className="hover:bg-primary hover:text-white">
+                  <SidebarMenuButton
+                    asChild
+                    className="hover:bg-primary hover:text-white"
+                  >
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
@@ -87,6 +82,22 @@ export function AppSidebar({ userName }: AppSidebarProps) {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  className="hover:bg-primary hover:text-white"
+                >
+                  <a className="cursor-pointer"><NovaSolicitacao width="w-[500px]" buttonClass="flex items-center gap-2 cursor-pointer " icon="text-lg"/></a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  className="hover:bg-primary hover:text-white"
+                >
+                  <a className="cursor-pointer"><CadastroFornecedor width="w-[500px]" buttonClass="flex items-center gap-2 cursor-pointer " icon="text-lg"/></a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

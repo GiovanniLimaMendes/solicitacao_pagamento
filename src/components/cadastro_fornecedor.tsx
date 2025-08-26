@@ -15,7 +15,13 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 
-export default function CadastroFornecedor() {
+type CadastroFornecedorProps = {
+  width?: string;          // largura do modal
+  buttonClass?: string;    // estilo do botão que abre o modal
+  icon?: string;
+};
+
+export default function CadastroFornecedor({ width = "w-full", buttonClass = "", icon = "text-2xl" }: CadastroFornecedorProps) {
   const [nome, setNome] = useState("");
   const [cpfCnpj, setCpfCnpj] = useState("");
   const [banco, setBanco] = useState("");
@@ -115,8 +121,8 @@ export default function CadastroFornecedor() {
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <div className="flex p-3 border rounded-2xl items-center gap-3 cursor-pointer hover:bg-primary hover:text-white transition-colors">
-            <FaUserPlus className="text-2xl" />
+          <div className={`${buttonClass}, ${width}`} >
+            <FaUserPlus className={`${icon}`} />
             Cadastrar Fornecedor
           </div>
         </DialogTrigger>
