@@ -51,7 +51,7 @@ export default function CadastroFornecedor() {
   const resetForm = () => {
     setNome("");
     setCpfCnpj("");
-    setBanco;
+    setBanco("");
     setAgencia("");
     setConta("");
     setPix("");
@@ -75,7 +75,7 @@ export default function CadastroFornecedor() {
 
     const payload = {
       nome: nome,
-      cpfCnpj: cpfCnpj,
+      cpfCnpj: cpfCnpjNumeros,
       banco: banco,
       agencia: agencia,
       conta: conta,
@@ -128,7 +128,7 @@ export default function CadastroFornecedor() {
               Fornecedor/Favorecido.
             </DialogDescription>
           </DialogHeader>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="nome">Nome Fornecedor</Label>
