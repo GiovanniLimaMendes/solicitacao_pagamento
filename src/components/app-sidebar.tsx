@@ -35,12 +35,12 @@ import CadastroFornecedor from "./cadastro_fornecedor";
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/",
     icon: MdHome,
   },
   {
-    title: "Solicitação de Pagamento",
-    url: "#",
+    title: "Solicitações de Pagamento",
+    url: "solicitacoes_pagamento",
     icon: MdPayments,
   },
   {

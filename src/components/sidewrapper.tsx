@@ -3,10 +3,14 @@
 import { usePathname } from "next/navigation"
 import { AppSidebar } from "./app-sidebar"
 
-export function SidebarWrapper() {
+type SidebarWrapperProps = {
+  userName: string;
+};
+
+export function SidebarWrapper({ userName }: SidebarWrapperProps) {
   const pathname = usePathname()
-  const isAuthPage = pathname.startsWith("/login")
+  const isAuthPage = pathname.includes("/login")
 
   if (isAuthPage) return null
-  return <AppSidebar />
+  return <AppSidebar  userName={userName}/>
 }
