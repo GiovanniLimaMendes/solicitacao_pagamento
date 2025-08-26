@@ -4,6 +4,8 @@ import {
   User2,
 } from "lucide-react";
 
+import { FaUserPlus } from "react-icons/fa";
+
 import {
   Sidebar,
   SidebarContent,
@@ -47,6 +49,11 @@ const items = [
     title: "Painel de Aprovação",
     url: "#",
     icon: MdLibraryAddCheck,
+  },
+  {
+    title: "Cadastrar Fornecedor",
+    url: "#",
+    icon: FaUserPlus,
   },
 ];
 

@@ -9,6 +9,7 @@ import {
 import "./globals.css";
 import { UltimosPedidos } from "@/components/ultimos-pedidos";
 import NovaSolicitacao from "@/components/nova_solicitacao";
+import CadastroFornecedor from "@/components/cadastro_fornecedor";
 
 export default function Home() {
   return (
@@ -22,11 +23,11 @@ export default function Home() {
             <h1>Solicitações de Pagamento</h1>
           </div>
           <NovaSolicitacao />
-
           <div className="flex p-3 border-1 rounded-2xl items-center gap-3 cursor-pointer hover:bg-primary hover:text-white">
             <MdLibraryAddCheck className="text-2xl" />
             <h1>Painel de Aprovação</h1>
           </div>
+          <CadastroFornecedor />
         </nav>
         <div className="flex mt-5">
           <h1 className="w-[50%]">Últimos pedidos</h1>

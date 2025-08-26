@@ -216,6 +216,58 @@ export default function NovaSolicitacao() {
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
+                <Label htmlFor="fornecedor">Fornecedor/Favorecido</Label>
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={open}
+                      className="w-full justify-between"
+                    >
+                      {selectedFornecedor
+                        ? selectedFornecedor.nome
+                        : "Selecione o fornecedor"}
+                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-full p-0">
+                    <Command>
+                      <CommandInput placeholder="Buscar fornecedor..." />
+                      <CommandEmpty>Nenhum fornecedor encontrado.</CommandEmpty>
+                      <CommandGroup>
+                        {fornecedores.map((f) => (
+                          <CommandItem
+                            key={f.id}
+                            value={f.nome.toLowerCase()} // Usar o nome em lowercase para a busca
+                            onSelect={(currentValue) => {
+                              const selected = fornecedores.find(
+                                (forn) =>
+                                  forn.nome.toLowerCase() === currentValue
+                              );
+                              setFornecedorId(
+                                selected ? selected.id.toString() : ""
+                              );
+                              setOpen(false);
+                            }}
+                          >
+                            {f.nome}
+                            <Check
+                              className={cn(
+                                "ml-auto h-4 w-4",
+                                fornecedorId === f.id.toString()
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              </div>
+              <div className="grid gap-2">
                 <Label htmlFor="formaPagamento">Forma de Pagamento</Label>
                 <Select
                   onValueChange={(value) => setFormaPagamento(value)}
@@ -281,58 +333,6 @@ export default function NovaSolicitacao() {
                   value={descricao}
                   onChange={(e) => setDescricao(e.target.value)}
                 />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="fornecedor">Fornecedor/Favorecido</Label>
-                <Popover open={open} onOpenChange={setOpen}>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      aria-expanded={open}
-                      className="w-full justify-between"
-                    >
-                      {selectedFornecedor
-                        ? selectedFornecedor.nome
-                        : "Selecione o fornecedor"}
-                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-full p-0">
-                    <Command>
-                      <CommandInput placeholder="Buscar fornecedor..." />
-                      <CommandEmpty>Nenhum fornecedor encontrado.</CommandEmpty>
-                      <CommandGroup>
-                        {fornecedores.map((f) => (
-                          <CommandItem
-                            key={f.id}
-                            value={f.nome.toLowerCase()} // Usar o nome em lowercase para a busca
-                            onSelect={(currentValue) => {
-                              const selected = fornecedores.find(
-                                (forn) =>
-                                  forn.nome.toLowerCase() === currentValue
-                              );
-                              setFornecedorId(
-                                selected ? selected.id.toString() : ""
-                              );
-                              setOpen(false);
-                            }}
-                          >
-                            {f.nome}
-                            <Check
-                              className={cn(
-                                "ml-auto h-4 w-4",
-                                fornecedorId === f.id.toString()
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              )}
-                            />
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
               </div>
             </div>
             <Button type="submit" className="w-full mt-5">
