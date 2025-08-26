@@ -34,7 +34,7 @@ export default function Home() {
         </div>
         <Separator className="mt-5 mb-5 bg-primary" />
         <div>
-          <UltimosPedidos />
+          <UltimosPedidos limit={10}/>
         </div>
       </div>
     </div>

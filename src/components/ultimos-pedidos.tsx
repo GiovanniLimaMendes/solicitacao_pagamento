@@ -23,7 +23,11 @@ interface Solicitacao {
   status: "pendente" | "aprovado" | "pago";
 }
 
-export function UltimosPedidos() {
+interface UltimosPedidosProps {
+  limit?: number; // opcional
+}
+
+export function UltimosPedidos({ limit }: UltimosPedidosProps) {
   const [solicitacoes, setSolicitacoes] = useState<Solicitacao[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +38,14 @@ export function UltimosPedidos() {
           cache: "no-store",
         });
         const data = await res.json();
-        setSolicitacoes(data.solicitacoes || []);
+        let lista: Solicitacao[] = data.solicitacoes || [];
+
+        // aplica o limit se passado
+        if (limit) {
+          lista = lista.slice(0, limit);
+        }
+
+        setSolicitacoes(lista);
       } catch (error) {
         console.error("Erro ao buscar solicitações:", error);
       } finally {
@@ -43,7 +54,7 @@ export function UltimosPedidos() {
     }
 
     fetchSolicitacoes();
-  }, []);
+  }, [limit]); // adiciona 'limit' como dependência
 
   if (loading) return <p>Carregando pedidos...</p>;
 
@@ -57,7 +68,7 @@ export function UltimosPedidos() {
           <TableHead>Forma de pagamento</TableHead>
           <TableHead>Valor</TableHead>
           <TableHead>Vencimento</TableHead>
-          <TableHead>Status</TableHead>
+          <TableHead className="text-center">Status</TableHead>
           <TableHead></TableHead>
         </TableRow>
       </TableHeader>
