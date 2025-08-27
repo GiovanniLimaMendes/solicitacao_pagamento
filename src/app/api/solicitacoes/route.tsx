@@ -1,14 +1,15 @@
 // app/api/solicitacoes/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/app/database/db";
+import { cookies } from "next/headers";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { formaPagamento, valor, vencimento, descricao, fornecedorId } = body;
 
-    // Aqui você pega o usuário logado pelo cookie/session
-    const usuario_id = 1; // exemplo fixo
+    const cookieStore = await cookies();
+    const usuario_id = cookieStore.get("usuario_id")?.value;
 
     await db.query(
       `INSERT INTO solicitacoes_pagamento 
